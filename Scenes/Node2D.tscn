@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Sofia.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Roads.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Burgas.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Svg Maps/bulgaria.svg" type="Texture" id=4]
+[ext_resource path="res://Scripts/Ruse.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Plovdiv.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Varna.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Travel timer.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=9]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Bulgaria" type="Sprite" parent="Player"]
+position = Vector2( 518.495, 308.045 )
+scale = Vector2( 1.35101, 1.35101 )
+texture = ExtResource( 4 )
+
+[node name="Travel timer" type="Timer" parent="Player/Bulgaria"]
+one_shot = true
+script = ExtResource( 8 )
+
+[node name="Cities" type="Node2D" parent="Player/Bulgaria/Travel timer"]
+position = Vector2( 518.495, 308.045 )
+scale = Vector2( 1.35101, 1.35101 )
+
+[node name="Sofia" type="Button" parent="Player/Bulgaria/Travel timer/Cities"]
+margin_left = -212.708
+margin_top = 13.5746
+margin_right = -181.708
+margin_bottom = 43.5746
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SofiaPosition" type="Position2D" parent="Player/Bulgaria/Travel timer/Cities/Sofia"]
+visible = false
+position = Vector2( 15, 15 )
+scale = Vector2( 0.740187, 0.740187 )
+__meta__ = {
+"_gizmo_extents_": 19.9
+}
+
+[node name="Plovdiv" type="Button" parent="Player/Bulgaria/Travel timer/Cities"]
+margin_left = -77.6551
+margin_top = 40.8524
+margin_right = -46.6551
+margin_bottom = 70.8524
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlovdivPosition" type="Position2D" parent="Player/Bulgaria/Travel timer/Cities/Plovdiv"]
+position = Vector2( 15, 15 )
+
+[node name="Burgas" type="Button" parent="Player/Bulgaria/Travel timer/Cities"]
+margin_left = 142.243
+margin_top = 3.60164
+margin_right = 190.243
+margin_bottom = 33.6016
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BurgasPosition" type="Position2D" parent="Player/Bulgaria/Travel timer/Cities/Burgas"]
+visible = false
+position = Vector2( 15, 15 )
+scale = Vector2( 0.740187, 0.740187 )
+
+[node name="Varna" type="Button" parent="Player/Bulgaria/Travel timer/Cities"]
+margin_left = 188.153
+margin_top = -74.0
+margin_right = 219.153
+margin_bottom = -44.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VarnaPosition" type="Position2D" parent="Player/Bulgaria/Travel timer/Cities/Varna"]
+visible = false
+position = Vector2( 15, 15 )
+scale = Vector2( 0.740187, 0.740187 )
+
+[node name="Ruse" type="Button" parent="Player/Bulgaria/Travel timer/Cities"]
+margin_left = 11.9042
+margin_top = -105.778
+margin_right = 42.9042
+margin_bottom = -75.7783
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RusePosition" type="Position2D" parent="Player/Bulgaria/Travel timer/Cities/Ruse"]
+visible = false
+position = Vector2( 15, 15 )
+scale = Vector2( 0.740187, 0.740187 )
+
+[node name="Travelling Circle" type="Position2D" parent="Player/Bulgaria/Travel timer"]
+script = ExtResource( 2 )
+[connection signal="timeout" from="Player/Bulgaria/Travel timer" to="Player" method="_on_Travel_timer_timeout"]
+[connection signal="button_down" from="Player/Bulgaria/Travel timer/Cities/Sofia" to="Player/Bulgaria/Travel timer/Cities/Sofia" method="_on_Sofia_button_down"]
+[connection signal="pressed" from="Player/Bulgaria/Travel timer/Cities/Plovdiv" to="Player/Bulgaria/Travel timer/Cities/Plovdiv" method="_on_Plovdiv_pressed"]
+[connection signal="pressed" from="Player/Bulgaria/Travel timer/Cities/Burgas" to="Player/Bulgaria/Travel timer/Cities/Burgas" method="_on_Burgas_pressed"]
+[connection signal="pressed" from="Player/Bulgaria/Travel timer/Cities/Varna" to="Player/Bulgaria/Travel timer/Cities/Varna" method="_on_Varna_pressed"]
+[connection signal="pressed" from="Player/Bulgaria/Travel timer/Cities/Ruse" to="Player/Bulgaria/Travel timer/Cities/Ruse" method="_on_Ruse_pressed"]
