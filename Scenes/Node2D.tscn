@@ -47,9 +47,9 @@ __meta__ = {
 }
 
 [node name="Plovdiv" type="Button" parent="Player/Bulgaria/Travel timer/Cities"]
-margin_left = -77.6551
+margin_left = -56.4928
 margin_top = 40.8524
-margin_right = -46.6551
+margin_right = -25.4928
 margin_bottom = 70.8524
 script = ExtResource( 6 )
 __meta__ = {
